@@ -68,7 +68,6 @@ while ($count != count($location->id)) {
     array_push($newSource->id, $row['id']);
     array_push($newSource->filename, $row['filename']);
     array_push($newSource->description, $row['description']);
-    //$count = $count + 0;
   }
   //push sources object into the sources array of the location object
   array_push($location->sources, $newSource);

@@ -40,12 +40,16 @@ $count = 0;
 
 //counter to keep track of location
 $location_index = 0;
+
+//loop through rows of data returned my mysql query
 while($row = $myNames->fetch_assoc()) {
-    //echo "Name: " . $row["name"]. " Description: " . $row["description"]. "<br>";
-    //echo $obj_1->swap1;
+    //iterate counter
     $count = $count + 1;
+
+    //if current row count matches the count of the two locations passed in through the AJAX request
+      //the values for swap1 and swap2 will both be the relative index of the user selected locations within the locations on the tour
     if ($count == $obj_1->swap1 OR $count == $obj_1->swap2){
-      //echo $count;
+      //fill location object
       $location->name[$location_index] = $row['name'];
       $location->latitude[$location_index] = $row['latitude'];
       $location->longitude[$location_index] = $row['longitude'];
@@ -58,11 +62,9 @@ while($row = $myNames->fetch_assoc()) {
 
 
 }
-//$swap_1 = "UPDATE locations SET name = '$location->name[0]', latitude = '$location->latitude[0]', longitude = '$location->longitude[0]', description = '$location->description[0]' WHERE id='$location->id[1]'";
-//$swap_2 = "UPDATE locations SET name = '$location->name[1]', latitude = '$location->latitude[1]', longitude = '$location->longitude[1]', description = '$location->description[1]' WHERE id='$location->id[0]'";
 
+//get data from location object
 $name1 = $location->name[0];
-//echo $name1;
 $name2 = $location->name[1];
 $latitude1 = $location->latitude[0];
 $latitude2 = $location->latitude[1];
@@ -77,12 +79,11 @@ $description2 = $location->description[1];
 $id1 = $location->id[0];
 $id2 = $location->id[1];
 
+//sql requests that will swap the id of the two locatoions in the database
 $swap_1 = "UPDATE locations SET name = '$name1', latitude = '$latitude1', longitude = '$longitude1', heading = '$heading1', pitch = '$pitch1', description = '$description1' WHERE id='$id2'";
 $swap_2 = "UPDATE locations SET name = '$name2', latitude = '$latitude2', longitude = '$longitude2', heading = '$heading2', pitch = '$pitch2', description = '$description2' WHERE id='$id1'";
-
-
+//handles the possibility of the name and description of the locations having characters that might cause an error
 if($con->query($swap_1)){
-  //echo $swap_1;
   $a=null;
 }
 else{
@@ -92,7 +93,6 @@ else{
   $con->query($swap_1);
 }
 if($con->query($swap_2)){
-  //echo $swap_2;
   $b=null;
 }
 else{
@@ -102,6 +102,7 @@ else{
   $con->query($swap_2);
 }
 
+//updates the location_id of the sources related to the swapped locations
 $source_swap = "UPDATE sources SET
     location_id =
       CASE
@@ -109,17 +110,6 @@ $source_swap = "UPDATE sources SET
         WHEN location_id = '$id2' THEN '$id1'
       END
     WHERE location_id IN ('$id1', '$id2')";
-
-if($con->query($source_swap)){
-  echo $source_swap;
-}
-else{echo "wat";}
-$con->close();//$myLatitudes = mysqli_query($con, $sqlLatitudes);
-//$myLongitudes = mysqli_query($con, $sqlLongitudes);
-
-//$results = $myNames->fetch_assoc();
-//$latitudes = mysqli_fetch_array($myLatitudes, MYSQLI_NUM);
-//$longitudes = mysqli_fetch_array($myLongitudes, MYSQLI_NUM);
-
-
+$con->query($source_swap);
+$con->close();
 ?>

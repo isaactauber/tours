@@ -1,32 +1,35 @@
 <?php
-ini_set("log_errors", 1);
-ini_set("error_log", "/tmp/php-error.log");
+//start session
 session_start();
+//configure mysql database
 require_once 'config.php';
-//$parameter = json_decode($_POST["x"], false);   //passes the tour id to $parameter
-//echo $paremeter;
+
+//make sure user is still logged in and session has not expired
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   header("location: login.php");
   exit;}
 
-//echo json_decode($_POST["w"], false);
+//save json object passed in by the AJAX request into the session variable
 $_SESSION['source_id'] = json_decode($_POST["w"], false);
-//echo $_SESSION['source_id'];
+
+//get filename from database of source matching id passed in by AJAX request
 $id = $_SESSION['source_id'];
 $sql = "SELECT filename FROM sources WHERE id='$id->source'";
 $myNames = mysqli_query($con, $sql);
 
+//create File object
 class File
 {
-  public $file = "abc123";
+  public $file;
 }
 
-//echo $var;
-// output data of each row
+//initialze new File object
 $file = new File;
+
+//save filename returned my mysql query into File object
 $row = $myNames->fetch_assoc();
-//echo $row;
 $file->file = $row['filename'];
-//$count = $count + 0;
+
+//return file object as json object
 echo json_encode($file);
 ?>
