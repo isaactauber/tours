@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang"en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,
+	initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Lets Explore!</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<style type="text/css">
+			body{ font: 14px sans-serif; text-align: center; }
+	</style>
+	<style>
+		#map{
+			height:500px;
+			width:100%;
+			}
+	</style>
+</head>
+<body>
+	<h1 id="header"></h1>
+	<br></br>
+	<p><a href="my_locations.html" class="btn btn-info">Toggle List View</a></p>
+	<br></br>
+	<div id="map"></div>
+	<br></br>
+	<p><a href="map_new_location.html" class="btn btn-success">New Location</a></p>
+	<p><a href="swap_locations.html" class="btn btn-warning">Change Order Of Locations</a></p>
+	<p><a href="delete_location.html" class="btn btn-danger">Delete Location From Tour</a></p>
+	<p><a href="my_tours.html" class="btn btn-primary">My Tours</a></p>
+	<p><a href="welcome.html" class="btn btn-primary">Home</a></p>
+	<br></br>
+	<script src="map_tour.js"></script>
+	<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN9ZnOOX2Qb21Xuq6LcY1nZ8MV_hwq34c&callback=initMap"></script>
+</body>
+</html>

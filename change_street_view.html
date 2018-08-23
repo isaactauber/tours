@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang"en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,
+	initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Lets Explore!</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+				width:100%;
+      }
+      /* Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+				text-align: center;
+				font: 14px sans-serif;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 35%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 1px;
+      }
+      #pano {
+        width: 69%;
+        height: 100%;
+        float: left;
+      }
+      #floating-panel {
+        width: 31%;
+        height: 100%;
+        float: right;
+        text-align: left;
+        overflow: auto;
+        position: static;
+        border: 1px solid #999;
+      }
+    </style>
+	<h1 id="header">Choose a street view or cancel request!</h1>
+</head>
+<br></br>
+<body>
+	<button id="select" name="select" class="btn btn-success" onclick="location.href='my_sources.html';">Stelect Street View</button>
+	<br></br>
+	<button id="cancel" name="cancel" class="btn btn-danger" onclick="location.href='my_sources.html';">Cancel</button>
+	<br></br>
+	<br></br>
+  <div id="pano"></div>
+  <div id="floating-panel">
+  <table>
+    <tr>
+      <td><b>Position</b></td><td id="position-cell">&nbsp;</td>
+    </tr>
+    <tr>
+      <td><b>POV Heading</b></td><td id="heading-cell">270</td>
+    </tr>
+    <tr>
+      <td><b>POV Pitch</b></td><td id="pitch-cell">0.0</td>
+    </tr>
+	</table>
+  </div>
+	<script src="change_street_view.js"></script>
+	<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN9ZnOOX2Qb21Xuq6LcY1nZ8MV_hwq34c&callback=initPano"></script>
+</body>
+</html>
