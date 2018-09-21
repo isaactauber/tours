@@ -1,5 +1,3 @@
 var config = {
-  MY_KEY : '123456',
-  SECRET_KEY : '56789',
-  KEY_2 : '101010'
+  MY_KEY : 'AIzaSyAN9ZnOOX2Qb21Xuq6LcY1nZ8MV_hwq34c'
 }
