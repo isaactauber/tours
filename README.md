@@ -2,12 +2,14 @@
 Hidden History Tours
 
 Admin:
+
 login.php
   Takes login credentials from a form and checks it against database
   
 register.php
   Takes credentials from form and inserts it into database
   Saves password as a hash in database for security purposes
+
 my_tours.html
   Queries database for tours associated with user
 
@@ -64,7 +66,9 @@ delete_location.html
   If user confirms then location will be deleted from database
 
 
+
 Explorer (user):
+
 explore.html
   Displays all tours on database
   Possible Improvement: more advanced methods of displaying tours
